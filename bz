@@ -1,0 +1,46 @@
+# A commad to search for something in the terminal. It will open the appropriate site based on the argument you provide it.
+
+#!/bin/bash
+
+#Help
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  cat <<EOF
+Usage: bz [engine] "search query"
+
+Available engines:
+  yt      → YouTube
+  wiki    → Wikipedia
+  ddg     → DuckDuckGo
+  arch    → ArchWiki
+  gh      → GitHub
+EOF
+  exit 0
+fi
+
+
+# Check first word for shortcut
+case "$1" in
+  yt) site="youtube"; shift ;;
+  wiki) site="wikipedia"; shift ;;
+  ddg) site="duckduckgo"; shift ;;
+  arch) site="archwiki"; shift ;;
+  gh) site="github"; shift ;;
+  *) site="google" ;;
+esac
+
+# Turn remaining input into a query string
+query=$(echo "$*" | sed 's/ /+/g')
+
+# Set destination URL based on shortcut
+case "$site" in
+  google) url="https://www.google.com/search?q=$query" ;;
+  youtube) url="https://www.youtube.com/results?search_query=$query" ;;
+  wikipedia) url="https://en.wikipedia.org/wiki/Special:Search/$query" ;;
+  duckduckgo) url="https://duckduckgo.com/?q=$query" ;;
+  archwiki) url="https://wiki.archlinux.org/index.php?search=$query" ;;
+  github) url="https://github.com/search?q=$query" ;;
+esac
+
+# Open in browser silently
+xdg-open "$url" >/dev/null 2>&1
+
