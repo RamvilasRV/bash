@@ -1,4 +1,4 @@
-# A commad to search for something in the terminal. It will open the appropriate site based on the argument you provide it.
+# A command to search for something in the terminal. It will open the appropriate site based on the argument you provide it.
 
 #!/bin/bash
 
