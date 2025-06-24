@@ -13,6 +13,7 @@ Available engines:
   ddg     → DuckDuckGo
   arch    → ArchWiki
   gh      → GitHub
+Use "url" inplace of the engine to open the url.. [Example: bz url "www.google.com"] 
 EOF
   exit 0
 fi
@@ -25,6 +26,11 @@ case "$1" in
   ddg) site="duckduckgo"; shift ;;
   arch) site="archwiki"; shift ;;
   gh) site="github"; shift ;;
+  url)
+    url="$2"
+    xdg-open "$url" >/dev/null 2>&1
+    exit 0
+    ;;
   *) site="google" ;;
 esac
 
