@@ -41,6 +41,6 @@ case "$site" in
   github) url="https://github.com/search?q=$query" ;;
 esac
 
-# Open in browser silently
+# Open in browser
 xdg-open "$url" >/dev/null 2>&1
 
