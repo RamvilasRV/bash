@@ -1,0 +1,17 @@
+## - Script that helps you create a folder with a description. It writes into .dirinfo
+
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: mkdirinfo <folder> <description>"
+    exit 1
+fi
+
+folder="$1"
+shift
+description="$*"
+
+mkdir -p "$folder"
+echo "$description" > "$folder/.dirinfo"
+echo "Folder '$folder' created/updated with description."
+

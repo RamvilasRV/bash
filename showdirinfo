@@ -1,0 +1,10 @@
+## - A script to read the .dirinfo
+
+#!/bin/bash
+
+if [ -f ".dirinfo" ]; then
+    cat .dirinfo
+else
+    echo "No description for $(pwd)"
+fi
+
